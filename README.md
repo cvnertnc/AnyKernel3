@@ -9,7 +9,9 @@ AnyKernel2 pushed the format further by allowing kernel developers to modify the
 
 _A script based on Galaxy Nexus (tuna) is included for reference. Everything to edit is self-contained in __anykernel.sh__._
 
-## // Properties / Variables ##
+<details><summary><big>Properties / Variables</big></summary>
+
+#### // Properties / Variables
 ```
 kernel.string=KernelName by YourName @ xda-developers
 do.devicecheck=1
@@ -62,8 +64,11 @@ __supported.patchlevels=__ and __supported.vendorpatchlevels=__ will match again
 `NO_MAGISK_CHECK=1` may be added to disable detection of Magisk and related kernel/dtb repatching for special zips which don't require that.
 
 `NO_VBMETA_PARTITION_PATCH=1` may be added to skip vbmeta processing using httools, since GKI is bootable with verity/verification ON, as long as AVB is not enforced for boot stage partitions.
+</details>
 
-## // Command Methods ##
+<details><summary><big>Command Methods</big></summary>
+
+#### // Command Methods
 ```
 ui_print "<text>" [...]
 abort ["<text>" [...]]
@@ -122,8 +127,11 @@ Similarly, multi-slot zips can be created with the normal zip layout for the act
 _backup_file_ may be used for testing to ensure ramdisk changes are made correctly, transparency for the end-user, or in a ramdisk-only "mod" zip. In the latter case _restore_file_ could also be used to create a "restore" zip to undo the changes, but should be used with caution since the underlying patched files could be changed with ROM/kernel updates.
 
 You may also use _ui_print "\<text\>"_ to write messages back to the recovery during the modification process, _abort "\<text>"_ to abort with optional message, and _file_getprop "\<file\>" "\<property\>"_ and _contains "\<string\>" "\<substring\>"_ to simplify string testing logic you might want in your script.
+</details>
 
-## // Binary Inclusion ##
+<details><summary><big>Binary Inclusion</big></summary>
+
+#### // Binary Inclusion
 
 The AK3 repo includes current ARM builds of `magiskboot`, `magiskpolicy`, `lptools_static`, `httools_static`, `fec`, `snapshotupdater_static` and `busybox` by default to keep the basic package small. Builds for other architectures and optional binaries (see below) are available from the latest Magisk zip, or my latest AIK-mobile and FlashIt packages, respectively, here:
 
@@ -143,8 +151,11 @@ Optional supported binaries which may be placed in /tools to enable built-in exp
 * `rkcrc` - Rockchip KRNL ramdisk image support
 
 Optionally moving ARM builds to tools/arm and putting x86 builds in tools/x86 will enable architecture detection for use with broad, device non-specific zips.
+</details>
 
-## // Instructions ##
+<details><summary><big>Instructions</big></summary>
+
+#### // Instructions
 
 1. Place final kernel build product, e.g. Image.gz-dtb or zImage to name a couple, in the zip root (any separate dt, dtb or recovery_dtbo, dtbo, system_dlkm and/or vendor_dlkm should also go here for devices that require custom ones, each will fallback to the original if not included)
 
@@ -167,8 +178,11 @@ Not required, but any tweaks you can't hardcode into the source (best practice) 
 It is also extremely important to note that for the broadest AK3 compatibility it is always better to modify a ramdisk file rather than replace it.
 
 ___If running into trouble when flashing an AK3 zip, the suffix -debugging may be added to the zip's filename to enable creation of a debug .tgz of /tmp for later examination while booted or on desktop.___
+</details>
 
-## // Staying Up-To-Date ##
+<details><summary><big>Staying Up-To-Date</big></summary>
+
+#### // Staying Up-To-Date
 
 Now that you've got a ready zip for your device, you might be wondering how to keep it up-to-date with the latest AnyKernel commits. AnyKernel2 and AnyKernel3 have been painstakingly developed to allow you to just drop in the latest update-binary and tools directory and have everything "just work" for beginners not overly git or script savvy, but the best practice way is as follows:
 
@@ -189,5 +203,6 @@ Now that you've got a ready zip for your device, you might be wondering how to k
 Then you should be able to `git pull upstream master` from your master branch and either merge or cherry-pick the new AK3 commits into your device branches as needed.
 
 ___For further support and usage examples please see the AnyKernel3 XDA thread:___ _https://forum.xda-developers.com/t/dev-template-anykernel3-easily-mod-rom-ramdisk-pack-image-gz-flashable-zip.2670512/_
+</details>
 
 __Have fun!__
